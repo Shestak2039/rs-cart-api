@@ -1,5 +1,5 @@
 # Base
-FROM node:12-alpine AS base
+FROM node:12.16.3-alpine AS base
 
 WORKDIR /app
 
@@ -8,16 +8,14 @@ COPY package*.json ./
 RUN npm install
 
 # BUILD
-WORKDIR /app
 COPY . .
 RUN npm run build
 
 # Application
-FROM node:12-alpine AS application
+FROM node:12.16.3-alpine AS application
 
 COPY --from=base /app/package*.json ./
 RUN npm install --only=production
-RUN npm install pm2 g
 COPY --from=base /app/dist ./dist
 
 USER node
