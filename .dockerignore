@@ -1,0 +1,8 @@
+# Created after the build process
+dist
+
+# Created after npm install command
+node_modules
+
+# Created by AWS Elastic Beanstalk
+.elasticbeanstalk
